@@ -1,0 +1,25 @@
+{
+  "name": "bichitos-backend",
+  "version": "1.0.0",
+  "description": "API bichitos-dashbard-backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuimfeld/bichitos-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuimfeld/bichitos-backend/issues"
+  },
+  "homepage": "https://github.com/manuimfeld/bichitos-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
