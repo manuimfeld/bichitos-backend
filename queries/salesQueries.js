@@ -1,0 +1,36 @@
+const getAllSales = `
+  SELECT * FROM sales;
+`;
+
+const getSalesToday =
+  "SELECT * FROM sales WHERE sale_date::date = CURRENT_DATE";
+
+const getSaleById = `
+  SELECT * FROM sales WHERE sale_id = $1;
+`;
+
+const createSale = `
+  INSERT INTO sales (amount, customer_dni, turn, created_by, payment_method_id)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *;
+`;
+
+const updateSale = `
+  UPDATE sales
+  SET amount = $1, customer_dni = $2, turn = $3, sale_date = $4, created_by = $5, payment_method_id = $6
+  WHERE sale_id = $7
+  RETURNING *;
+`;
+
+const deleteSale = `
+  DELETE FROM sales WHERE sale_id = $1;
+`;
+
+module.exports = {
+  getAllSales,
+  getSalesToday,
+  getSaleById,
+  createSale,
+  updateSale,
+  deleteSale,
+};

@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const pool = require("./config/pg/connection");
+
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Servidor iniciado");
-});
+const salesRoutes = require("./routes/sales");
 
-app.listen(3000);
+app.use("/api", salesRoutes);
+app.listen(process.env.API_PORT);
