@@ -2,8 +2,7 @@ const getAllSales = `
   SELECT * FROM sales;
 `;
 
-const getSalesToday =
-  "SELECT * FROM sales WHERE sale_date::date = CURRENT_DATE";
+const getSalesToday = `SELECT * FROM sales WHERE DATE_TRUNC('day', sale_date) = CURRENT_DATE`;
 
 const getSaleById = `
   SELECT * FROM sales WHERE sale_id = $1;
