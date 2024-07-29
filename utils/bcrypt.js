@@ -10,10 +10,13 @@ const hashPassword = async (planePassword) => {
   }
 };
 
-const comparePassword = (planePassword) => {
-  bcrypt.compare(planePassword, hash, function (err, result) {
-    return result;
-  });
+const comparePassword = async (planePassword, hashedPassword) => {
+  try {
+    const checkPassword = await bcrypt.compare(planePassword, hashedPassword);
+    return checkPassword;
+  } catch (err) {
+    throw new Error("Error al comparar la contraseña" + err);
+  }
 };
 
 module.exports = { hashPassword, comparePassword };
