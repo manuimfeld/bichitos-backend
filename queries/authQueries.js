@@ -1,5 +1,5 @@
 const checkAuth = `
-  SELECT * FROM users WHERE username = $1, password = $2;
+  SELECT user_id, username, role, password                                                                                                                                       FROM users WHERE username = $1;
 `;
 
 const createUser = `
