@@ -5,7 +5,8 @@ const signJwt = (data) =>
   jwt.sign(data, process.env.JWT_SECRET, { expiresIn: "14d" });
 
 const authenticateJWT = (req, res, next) => {
-  const token = req.headers["Authorization"];
+  const token = req.headers["authorization"];
+  console.log(req.headers["authorization"]);
 
   if (token == null) return res.sendStatus(401);
 

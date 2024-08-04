@@ -3,20 +3,15 @@ const salesController = require("../controllers/sales");
 const { authenticateJWT, authorizeRole } = require("../utils/jwt");
 const router = express.Router();
 
-router.get(
+router.get("/sales", authenticateJWT, salesController.getAllSales);
+
+router.get("/sales/today", authenticateJWT, salesController.getSalesToday);
+
+router.post(
   "/sales",
   authenticateJWT,
   authorizeRole("admin"),
-  salesController.getAllSales
+  salesController.createSale
 );
-
-router.get(
-  "/sales/today",
-  authenticateJWT,
-  authorizeRole("admin"),
-  salesController.getSalesToday
-);
-
-router.post("/sales", salesController.createSale);
 
 module.exports = router;
