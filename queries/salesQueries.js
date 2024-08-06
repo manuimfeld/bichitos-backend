@@ -4,6 +4,8 @@ const getAllSales = `
 
 const getSalesToday = `SELECT * FROM sales WHERE DATE_TRUNC('day', sale_date) = CURRENT_DATE`;
 
+const getSalesByDay = `SELECT * FROM sales WHERE sale_date >= $1 AND sale_date <= $2`;
+
 const getSaleById = `
   SELECT * FROM sales WHERE sale_id = $1;
 `;
@@ -27,6 +29,7 @@ const deleteSale = `
 
 module.exports = {
   getAllSales,
+  getSalesByDay,
   getSalesToday,
   getSaleById,
   createSale,
