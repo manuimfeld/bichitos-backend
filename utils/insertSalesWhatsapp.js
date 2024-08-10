@@ -1,4 +1,6 @@
 /* 
+Si recibo {messages: ["1233 e", "5353 d"]}
+Va a hacer un post en sales para cada venta con su monto y tipo de pago
 
 const paymentMethods = {
   e: 1, // Efectivo
