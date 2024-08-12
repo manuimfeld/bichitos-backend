@@ -17,7 +17,7 @@ router.post(
 );
 
 router.delete(
-  "/sales",
+  "/sales/:sale_id",
   authenticateJWT,
   authorizeRole("admin"),
   salesController.deleteSale
