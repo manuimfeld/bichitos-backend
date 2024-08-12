@@ -16,4 +16,11 @@ router.post(
   salesController.createSale
 );
 
+router.delete(
+  "/sales",
+  authenticateJWT,
+  authorizeRole("admin"),
+  salesController.deleteSale
+);
+
 module.exports = router;

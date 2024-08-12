@@ -11,8 +11,8 @@ const getSaleById = `
 `;
 
 const createSale = `
-  INSERT INTO sales (amount, customer_dni, turn, created_by, payment_method_id)
-  VALUES ($1, $2, $3, $4, $5)
+  INSERT INTO sales (payment_method_id, amount, customer_dni, sale_date, created_by, turn)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
 `;
 
