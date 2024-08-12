@@ -23,4 +23,11 @@ router.delete(
   salesController.deleteSale
 );
 
+router.put(
+  "/sales/:sale_id",
+  authenticateJWT,
+  authorizeRole("admin"),
+  salesController.editSale
+);
+
 module.exports = router;

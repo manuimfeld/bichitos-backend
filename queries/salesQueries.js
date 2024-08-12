@@ -18,8 +18,8 @@ const createSale = `
 
 const updateSale = `
   UPDATE sales
-  SET amount = $1, customer_dni = $2, turn = $3, sale_date = $4, created_by = $5, payment_method_id = $6
-  WHERE sale_id = $7
+  SET payment_method_id = $1, amount = $2, turn = $3, sale_date = $4
+  WHERE sale_id = $5
   RETURNING *;
 `;
 

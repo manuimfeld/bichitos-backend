@@ -80,6 +80,41 @@ const salesController = {
       handleError(res, error, "Error al eliminar la venta");
     }
   },
+  editSale: async (req, res) => {
+    const { sale_id } = req.params;
+    const { payment_method_id, amount, turn, sale_date } = req.body;
+
+    if (!sale_id) {
+      return handleError(res, null, "No seleccionaste la venta a editar");
+    }
+
+    if (
+      !payment_method_id ||
+      amount === undefined ||
+      turn === undefined ||
+      !sale_date
+    ) {
+      return handleError(
+        res,
+        null,
+        "Faltan datos necesarios para actualizar la venta"
+      );
+    }
+
+    try {
+      const result = await pool.query(salesQueries.updateSale, [
+        payment_method_id,
+        amount,
+        turn,
+        sale_date,
+        sale_id,
+      ]);
+      handleSuccess(res, result.rows[0]);
+    } catch (error) {
+      console.log(error);
+      handleError(res, error);
+    }
+  },
 };
 
 module.exports = salesController;

@@ -6,7 +6,9 @@ const handleSuccess = (res, data) => {
 
 const handleError = (res, error, message) => {
   if (!res.headersSent) {
-    res.status(500).json({ error: message, details: error.message });
+    // Verifica si error es null o undefined y maneja la excepción
+    const errorMessage = error ? error.message : "Unknown error";
+    res.status(500).json({ error: message, details: errorMessage });
   }
 };
 
