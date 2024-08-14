@@ -34,6 +34,7 @@ const authController = {
         handleError(res, null, "Contraseña incorrecta");
       }
     } catch (error) {
+      console.log(error);
       handleError(res, error, "Error al iniciar sesión");
     }
   },

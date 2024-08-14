@@ -6,7 +6,6 @@ const signJwt = (data) =>
 
 const authenticateJWT = (req, res, next) => {
   const token = req.headers["authorization"];
-  console.log(req.headers["authorization"]);
 
   if (token == null) return res.sendStatus(401);
 

@@ -1,5 +1,6 @@
 const pool = require("../config/pg/connection");
 const salesQueries = require("../queries/salesQueries");
+const { turnMapping, paymentMapping } = require("../utils/mappingSales");
 const { handleSuccess, handleError } = require("../utils/responseHelper");
 
 const salesController = {
@@ -82,17 +83,18 @@ const salesController = {
   },
   editSale: async (req, res) => {
     const { sale_id } = req.params;
-    const { payment_method_id, amount, turn, sale_date } = req.body;
+
+    const saleData = { ...req.body };
 
     if (!sale_id) {
       return handleError(res, null, "No seleccionaste la venta a editar");
     }
 
     if (
-      !payment_method_id ||
-      amount === undefined ||
-      turn === undefined ||
-      !sale_date
+      !saleData.payment_method_id ||
+      saleData.amount === undefined ||
+      saleData.turn === undefined ||
+      !saleData.sale_date
     ) {
       return handleError(
         res,
@@ -103,15 +105,14 @@ const salesController = {
 
     try {
       const result = await pool.query(salesQueries.updateSale, [
-        payment_method_id,
-        amount,
-        turn,
-        sale_date,
+        saleData.payment_method_id,
+        saleData.amount,
+        saleData.turn,
+        saleData.sale_date,
         sale_id,
       ]);
       handleSuccess(res, result.rows[0]);
     } catch (error) {
-      console.log(error);
       handleError(res, error);
     }
   },
