@@ -1,6 +1,6 @@
 const pool = require("../config/pg/connection");
 const salesQueries = require("../queries/salesQueries");
-const { turnMapping, paymentMapping } = require("../utils/mappingSales");
+const { paymentMapping } = require("../utils/mappingSales");
 const { handleSuccess, handleError } = require("../utils/responseHelper");
 
 const salesController = {
@@ -105,7 +105,7 @@ const salesController = {
 
     try {
       const result = await pool.query(salesQueries.updateSale, [
-        saleData.payment_method_id,
+        paymentMapping[saleData.payment_method_id],
         saleData.amount,
         saleData.turn,
         saleData.sale_date,
