@@ -7,7 +7,9 @@ const expensesController = {
     try {
       const result = await pool.query(expensesQueries.getAllExpenses);
       handleSuccess(res, result.rows);
+      console.log(res);
     } catch (error) {
+      console.log(error);
       handleError(res, error, "Error al obtener todos los gastos");
     }
   },
