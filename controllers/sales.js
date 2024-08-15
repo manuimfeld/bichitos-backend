@@ -16,7 +16,6 @@ const salesController = {
     const sale_date = req.params.date;
     const startDate = new Date(sale_date + "T00:00:00Z");
     const endDate = new Date(sale_date + "T23:59:59Z");
-    console.log(startDate);
 
     if (!sale_date) {
       return handleError(res, null, "Faltan datos requeridos");
@@ -37,6 +36,15 @@ const salesController = {
       handleSuccess(res, result.rows);
     } catch (error) {
       handleError(res, error, "Error al obtener todas las ventas");
+    }
+  },
+  getTotalSalesThisMonth: async (req, res) => {
+    try {
+      const result = await pool.query(salesQueries.getTotalSalesMonth);
+      handleSuccess(res, result.rows[0]);
+    } catch (error) {
+      console.error("Error al obtener ventas del mes:", error);
+      handleError(res, error, "Error al crear la venta");
     }
   },
   createSale: async (req, res) => {

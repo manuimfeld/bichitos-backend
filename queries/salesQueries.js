@@ -10,6 +10,16 @@ const getSaleById = `
   SELECT * FROM sales WHERE sale_id = $1;
 `;
 
+const getTotalSalesMonth = `
+   SELECT 
+    SUM(amount) AS total_sales,
+    COUNT(*) AS total_sales_count
+  FROM 
+    sales
+  WHERE 
+    DATE_TRUNC('month', sale_date) = DATE_TRUNC('month', CURRENT_DATE);
+`;
+
 const createSale = `
   INSERT INTO sales (payment_method_id, amount, customer_dni, sale_date, created_by, turn)
   VALUES ($1, $2, $3, $4, $5, $6)
@@ -32,6 +42,7 @@ module.exports = {
   getSalesByDay,
   getSalesToday,
   getSaleById,
+  getTotalSalesMonth,
   createSale,
   updateSale,
   deleteSale,
