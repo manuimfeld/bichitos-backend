@@ -13,6 +13,15 @@ const expensesController = {
       handleError(res, error, "Error al obtener todos los gastos");
     }
   },
+  getTotalExpensesThisMonth: async (req, res) => {
+    try {
+      const result = await pool.query(expensesQueries.getTotalExpensesMonth);
+      handleSuccess(res, result.rows[0]);
+    } catch (error) {
+      console.error("Error al obtener gastos del mes:", error);
+      handleError(res, error, "Error al obtener gastos del mes");
+    }
+  },
   createExpense: async (req, res) => {
     const { name, price, provider } = req.body;
     provider.replace(" ", "");

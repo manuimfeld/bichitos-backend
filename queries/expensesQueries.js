@@ -12,11 +12,22 @@ const getAllExpenses = `
     providers ON expenses.provider_id = providers.id
 `;
 
+const getTotalExpensesMonth = `
+   SELECT 
+    SUM(amount) AS total_expenses_amount,
+    COUNT(*) AS total_expenses_count
+  FROM 
+    expenses
+  WHERE 
+    DATE_TRUNC('month', expenses_date) = DATE_TRUNC('month', CURRENT_DATE);
+`;
+
 const createExpense = `INSERT INTO expenses (expenses_date, provider_id, expenses_type, amount, is_paid)
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;`;
 
 module.exports = {
   getAllExpenses,
+  getTotalExpensesMonth,
   createExpense,
 };
