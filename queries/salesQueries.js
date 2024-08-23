@@ -15,7 +15,17 @@ const getSalesToday = `SELECT
   JOIN turns t ON s.turn = t.id
   WHERE DATE_TRUNC('day', s.sale_date) = CURRENT_DATE`;
 
-const getSalesByDay = `SELECT * FROM sales WHERE sale_date >= $1 AND sale_date <= $2`;
+const getSalesByDay = `SELECT
+    s.sale_id,
+    pm.method_name AS payment_method,
+    s.amount,
+    s.customer_dni,
+    s.sale_date,
+    s.created_by,
+    t.name AS turn
+  FROM sales s
+  JOIN payment_methods pm ON s.payment_method_id = pm.payment_id
+  JOIN turns t ON s.turn = t.id WHERE sale_date >= $1 AND sale_date <= $2`;
 
 const getSaleById = `
   SELECT * FROM sales WHERE sale_id = $1;
