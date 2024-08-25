@@ -1,6 +1,6 @@
 const pool = require("../config/pg/connection");
 const salesQueries = require("../queries/salesQueries");
-const { paymentMapping } = require("../utils/mappingSales");
+const { paymentMapping, turnMapping } = require("../utils/mappingSales");
 const { handleSuccess, handleError } = require("../utils/responseHelper");
 
 const salesController = {
@@ -94,6 +94,8 @@ const salesController = {
 
     const saleData = { ...req.body };
 
+    saleData.turn = turnMapping[saleData.turn];
+
     if (!sale_id) {
       return handleError(res, null, "No seleccionaste la venta a editar");
     }
@@ -121,6 +123,7 @@ const salesController = {
       ]);
       handleSuccess(res, result.rows[0]);
     } catch (error) {
+      console.log(error);
       handleError(res, error);
     }
   },
