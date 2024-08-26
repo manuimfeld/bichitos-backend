@@ -12,6 +12,21 @@ const getAllExpenses = `
     providers ON expenses.provider_id = providers.id
 `;
 
+const getExpensesByMonth = `SELECT 
+    expenses.id,
+    expenses.expenses_date,
+    providers.name AS provider,
+    expenses.expenses_type,
+    expenses.amount,
+    expenses.is_paid
+  FROM 
+    expenses
+  JOIN 
+    providers ON expenses.provider_id = providers.id
+  WHERE
+    DATE_TRUNC('month', expenses.expenses_date) = DATE_TRUNC('month', CURRENT_DATE);
+`;
+
 const getTotalExpensesMonth = `
    SELECT 
     SUM(amount) AS total_expenses_amount,
@@ -28,6 +43,7 @@ const createExpense = `INSERT INTO expenses (expenses_date, provider_id, expense
 
 module.exports = {
   getAllExpenses,
+  getExpensesByMonth,
   getTotalExpensesMonth,
   createExpense,
 };

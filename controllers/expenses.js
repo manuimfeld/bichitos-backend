@@ -7,7 +7,14 @@ const expensesController = {
     try {
       const result = await pool.query(expensesQueries.getAllExpenses);
       handleSuccess(res, result.rows);
-      console.log(res);
+    } catch (error) {
+      handleError(res, error, "Error al obtener todos los gastos");
+    }
+  },
+  getExpensesByMonth: async (req, res) => {
+    try {
+      const result = await pool.query(expensesQueries.getExpensesByMonth);
+      handleSuccess(res, result.rows);
     } catch (error) {
       console.log(error);
       handleError(res, error, "Error al obtener todos los gastos");
