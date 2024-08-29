@@ -13,7 +13,8 @@ t.name AS turn
 FROM sales s
 JOIN payment_methods pm ON s.payment_method_id = pm.payment_id
 JOIN turns t ON s.turn = t.id
-WHERE DATE(s.sale_date) = CURRENT_DATE`;
+WHERE DATE(s.sale_date) = CURRENT_DATE
+ORDER BY turn`;
 
 const getSalesByDay = `SELECT
     s.sale_id,
