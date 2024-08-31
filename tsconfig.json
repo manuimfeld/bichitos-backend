@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./", // Cambia esto si tus archivos están en la raíz
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types", "./types"] // Incluye la carpeta `types`
+  },
+  "include": ["*.ts", "types/**/*.d.ts"], // Incluye archivos TypeScript y archivos de definición
+  "exclude": ["node_modules"]
+}

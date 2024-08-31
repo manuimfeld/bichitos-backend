@@ -1,7 +1,7 @@
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 const saltRounds = 10;
 
-const hashPassword = async (planePassword) => {
+export const hashPassword = async (planePassword: string): Promise<string> => {
   try {
     const hashedPassword = await bcrypt.hash(planePassword, saltRounds);
     return hashedPassword;
@@ -10,7 +10,10 @@ const hashPassword = async (planePassword) => {
   }
 };
 
-const comparePassword = async (planePassword, hashedPassword) => {
+export const comparePassword = async (
+  planePassword: string,
+  hashedPassword: string
+): Promise<Boolean> => {
   try {
     const checkPassword = await bcrypt.compare(planePassword, hashedPassword);
     return checkPassword;
@@ -19,4 +22,4 @@ const comparePassword = async (planePassword, hashedPassword) => {
   }
 };
 
-module.exports = { hashPassword, comparePassword };
+export default { hashPassword, comparePassword };

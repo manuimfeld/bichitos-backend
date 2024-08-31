@@ -8,7 +8,7 @@ const createUser = `
   RETURNING *;
 `;
 
-module.exports = {
+export default {
   checkAuth,
   createUser,
 };
