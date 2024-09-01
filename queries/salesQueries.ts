@@ -1,8 +1,8 @@
-const getAllSales = `
+export const getAllSales = `
   SELECT * FROM sales;
 `;
 
-const getSalesToday = `SELECT
+export const getSalesToday = `SELECT
 s.sale_id,
 pm.method_name AS payment_method,
 s.amount,
@@ -16,7 +16,7 @@ JOIN turns t ON s.turn = t.id
 WHERE DATE(s.sale_date) = CURRENT_DATE
 ORDER BY turn`;
 
-const getSalesByDay = `SELECT
+export const getSalesByDay = `SELECT
     s.sale_id,
     pm.method_name AS payment_method,
     s.amount,
@@ -28,11 +28,11 @@ const getSalesByDay = `SELECT
   JOIN payment_methods pm ON s.payment_method_id = pm.payment_id
   JOIN turns t ON s.turn = t.id WHERE sale_date >= $1 AND sale_date <= $2`;
 
-const getSaleById = `
+export const getSaleById = `
   SELECT * FROM sales WHERE sale_id = $1;
 `;
 
-const getTotalSalesMonth = `
+export const getTotalSalesMonth = `
    SELECT 
     SUM(amount) AS total_sales,
     COUNT(*) AS total_sales_count
@@ -42,24 +42,24 @@ const getTotalSalesMonth = `
     DATE_TRUNC('month', sale_date) = DATE_TRUNC('month', CURRENT_DATE);
 `;
 
-const createSale = `
+export const createSale = `
   INSERT INTO sales (payment_method_id, amount, customer_dni, sale_date, created_by, turn)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
 `;
 
-const updateSale = `
+export const updateSale = `
   UPDATE sales
   SET payment_method_id = $1, amount = $2, turn = $3, sale_date = $4
   WHERE sale_id = $5
   RETURNING *;
 `;
 
-const deleteSale = `
+export const deleteSale = `
   DELETE FROM sales WHERE sale_id = $1;
 `;
 
-module.exports = {
+export default {
   getAllSales,
   getSalesByDay,
   getSalesToday,

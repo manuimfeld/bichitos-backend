@@ -1,7 +1,7 @@
-const express = require("express");
-const salesController = require("../controllers/sales");
-const { authenticateJWT, authorizeRole } = require("../utils/jwt");
-const router = express.Router();
+import { Router } from "express";
+import salesController from "../controllers/sales";
+import { authenticateJWT, authorizeRole } from "../utils/jwt";
+const router = Router();
 
 router.get("/sales", authenticateJWT, salesController.getAllSales);
 
@@ -36,4 +36,4 @@ router.put(
   salesController.editSale
 );
 
-module.exports = router;
+export default router;
