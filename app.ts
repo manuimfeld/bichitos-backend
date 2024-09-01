@@ -11,6 +11,7 @@ import expensesRoutes from "./routes/expenses";
 const app = express();
 app.use(cors());
 app.use(express.json());
+const API_PORT = process.env.API_PORT || 3001;
 
 //Declare use routes
 app.use("/api", salesRoutes);
@@ -18,4 +19,4 @@ app.use("/api", authRoutes);
 app.use("/api", expensesRoutes);
 app.use("/api", providersRoutes);
 
-app.listen(process.env.API_PORT ? parseInt(process.env.API_PORT, 10) : 3001);
+app.listen(API_PORT);
