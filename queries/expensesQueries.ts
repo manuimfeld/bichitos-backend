@@ -41,7 +41,7 @@ const createExpense = `INSERT INTO expenses (expenses_date, provider_id, expense
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;`;
 
-module.exports = {
+export default {
   getAllExpenses,
   getExpensesByMonth,
   getTotalExpensesMonth,

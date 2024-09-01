@@ -1,7 +1,8 @@
-const express = require("express");
-const { authenticateJWT } = require("../utils/jwt");
-const expensesController = require("../controllers/expenses");
-const router = express.Router();
+import { Router } from "express";
+import { authenticateJWT } from "../utils/jwt";
+import expensesController from "../controllers/expenses";
+
+const router = Router();
 
 router.get("/expenses", authenticateJWT, expensesController.getExpensesByMonth);
 router.get(
@@ -11,4 +12,4 @@ router.get(
 );
 router.post("/expenses", authenticateJWT, expensesController.createExpense);
 
-module.exports = router;
+export default router;
