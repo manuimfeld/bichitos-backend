@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import pool from "../config/pg/connection";
-import authQueries from "../queries/authQueries";
+import authQueries from "../src/queries/authQueries";
 import { comparePassword, hashPassword } from "../utils/bcrypt";
 import { signJwt } from "../utils/jwt";
 import { handleSuccess, handleError } from "../utils/responseHelper";

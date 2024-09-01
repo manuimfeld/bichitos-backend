@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import pool from "../config/pg/connection";
-import expensesQueries from "../queries/expensesQueries";
+import expensesQueries from "../src/queries/expensesQueries";
 import { handleSuccess, handleError } from "../utils/responseHelper";
 
 export const getAllExpenses = async (req: Request, res: Response) => {

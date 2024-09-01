@@ -2,13 +2,13 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./", // Cambia esto si tus archivos están en la raíz
+    "outDir": "src/dist", // Directorio de salida para los archivos compilados
+    "rootDir": "src", // La raíz de los archivos fuente
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./types"] // Incluye la carpeta `types`
+    "typeRoots": ["./node_modules/@types", "./src/types"] // Actualiza la ruta a la carpeta `types`
   },
-  "include": ["*.ts", "types/**/*.d.ts"], // Incluye archivos TypeScript y archivos de definición
+  "include": ["src/**/*.ts"], // Incluye todos los archivos .ts en la carpeta src
   "exclude": ["node_modules"]
 }
