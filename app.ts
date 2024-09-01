@@ -18,4 +18,4 @@ app.use("/api", authRoutes);
 app.use("/api", expensesRoutes);
 app.use("/api", providersRoutes);
 
-app.listen(process.env.API_PORT);
+app.listen(process.env.API_PORT ? parseInt(process.env.API_PORT, 10) : 3001);
