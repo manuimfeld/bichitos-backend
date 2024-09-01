@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import pool from "../config/pg/connection";
-import providersQueries from "../src/queries/providersQueries";
+import providersQueries from "../queries/providersQueries";
 import { handleError, handleSuccess } from "../utils/responseHelper";
 
 export const getAllProviders = async (req: Request, res: Response) => {
