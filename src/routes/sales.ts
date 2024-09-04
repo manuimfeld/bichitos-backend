@@ -10,7 +10,7 @@ router.get("/sales/today", authenticateJWT, salesController.getSalesToday);
 router.get("/sales/:date", authenticateJWT, salesController.getSalesByDay);
 
 router.get(
-  "/sales-month",
+  "/sales/summary/month",
   authenticateJWT,
   salesController.getTotalSalesThisMonth
 );

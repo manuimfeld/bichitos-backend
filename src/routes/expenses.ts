@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/expenses", authenticateJWT, expensesController.getExpensesByMonth);
 router.get(
-  "/expenses-month",
+  "/expenses/summary/month",
   authenticateJWT,
   expensesController.getTotalExpensesThisMonth
 );
