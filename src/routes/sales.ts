@@ -15,6 +15,12 @@ router.get(
   salesController.getTotalSalesThisMonth
 );
 
+router.get(
+  "/sales/summary/year",
+  authenticateJWT,
+  salesController.getTotalSalesYear
+);
+
 router.post(
   "/sales",
   authenticateJWT,

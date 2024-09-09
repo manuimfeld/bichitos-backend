@@ -42,6 +42,32 @@ export const getTotalSalesMonth = `
     DATE_TRUNC('month', sale_date) = DATE_TRUNC('month', CURRENT_DATE);
 `;
 
+export const getTotalSalesYear = `
+   WITH months AS (
+    SELECT
+        DATE_TRUNC('month', date) AS month
+    FROM
+        generate_series(
+            -- Fecha de inicio (1 de enero del año en curso)
+            DATE_TRUNC('year', CURRENT_DATE),
+            -- Fecha de fin (31 de diciembre del año en curso)
+            DATE_TRUNC('year', CURRENT_DATE) + INTERVAL '1 year - 1 day',
+            '1 month'
+        ) AS date
+)
+SELECT
+    m.month,
+    COALESCE(COUNT(s.sale_date), 0) AS total_sales
+FROM
+    months m
+LEFT JOIN
+    sales s ON DATE_TRUNC('month', s.sale_date) = m.month
+GROUP BY
+    m.month
+ORDER BY
+    m.month;
+`;
+
 export const createSale = `
   INSERT INTO sales (payment_method_id, amount, customer_dni, sale_date, created_by, turn)
   VALUES ($1, $2, $3, $4, $5, $6)
@@ -65,6 +91,7 @@ export default {
   getSalesToday,
   getSaleById,
   getTotalSalesMonth,
+  getTotalSalesYear,
   createSale,
   updateSale,
   deleteSale,

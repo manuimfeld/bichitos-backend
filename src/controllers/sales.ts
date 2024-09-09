@@ -47,6 +47,15 @@ export const getTotalSalesThisMonth = async (req: Request, res: Response) => {
     handleError(res, error, "Error al crear la venta");
   }
 };
+export const getTotalSalesYear = async (req: Request, res: Response) => {
+  try {
+    const result = await pool.query(salesQueries.getTotalSalesYear);
+    handleSuccess(res, result.rows);
+  } catch (error) {
+    console.error("Error al obtener ventas del mes:", error);
+    handleError(res, error, "Error al crear la venta");
+  }
+};
 export const createSale = async (req: Request, res: Response) => {
   const {
     payment_method_id,
@@ -133,6 +142,7 @@ export default {
   getSalesByDay,
   getSalesToday,
   getTotalSalesThisMonth,
+  getTotalSalesYear,
   createSale,
   deleteSale,
   editSale,
