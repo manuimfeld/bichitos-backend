@@ -11,7 +11,8 @@
     "baseUrl": "./", // Esto define la base de las rutas
     "paths": {
       "@/*": ["src/*"] // Alias para la carpeta src
-    }
+    },
+    "resolveJsonModule": true 
   },
   "include": ["src/**/*.ts"], // Incluye todos los archivos .ts en la carpeta src
   "exclude": ["node_modules"]
