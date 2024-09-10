@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { IGetUserAuthInfoRequest } from "../types/express";
 import { User } from "../types/user";
 
 dotenv.config();
@@ -11,7 +12,7 @@ export const signJwt = (data: object) => {
 };
 
 export const authenticateJWT = (
-  req: Request,
+  req: IGetUserAuthInfoRequest,
   res: Response,
   next: NextFunction
 ) => {
@@ -33,7 +34,7 @@ export const authenticateJWT = (
 };
 
 export const authorizeRole = (authorizedRole: string) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: IGetUserAuthInfoRequest, res: Response, next: NextFunction) => {
     const user = req.user as User;
 
     if (user?.role !== authorizedRole) {

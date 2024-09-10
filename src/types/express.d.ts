@@ -1,10 +1,6 @@
 import { Request } from "express";
-import { User } from "./user"; // Ajusta la ruta según la estructura de tu proyecto
+import { User } from "./user"; // Asegúrate de ajustar la ruta según la ubicación de tu archivo de tipos `User`.
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: User;
-    }
-  }
+export interface IGetUserAuthInfoRequest extends Request {
+  user?: User; // O el tipo que hayas definido para "User"
 }

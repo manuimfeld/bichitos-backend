@@ -1,5 +1,8 @@
 import cors from "cors";
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import specs from "./swagger/swagger";
+import data from "./swagger/swagger.json";
 
 //Import routes
 import salesRoutes from "./routes/sales";
@@ -18,5 +21,8 @@ app.use("/api", salesRoutes);
 app.use("/api", authRoutes);
 app.use("/api", expensesRoutes);
 app.use("/api", providersRoutes);
+
+// Configura Swagger UI en tu aplicación Express
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(data));
 
 app.listen(API_PORT);
