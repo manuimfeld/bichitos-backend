@@ -3,11 +3,11 @@ import { authenticateJWT, authorizeRole } from "../utils/jwt";
 import {
   getAllSales,
   getSalesToday,
-  getSalesByDay,
+  getSalesByDate,
 } from "../controllers/sales/salesGetController";
 import {
-  getTotalSalesThisMonth,
-  getTotalSalesYear,
+  getCurrentMonthSalesSummary,
+  getCurrentYearSalesSummary,
 } from "../controllers/sales/salesSummaryController";
 import { createSale } from "../controllers/sales/salesPostController";
 import { deleteSale } from "../controllers/sales/salesDeleteController";
@@ -25,11 +25,11 @@ router
 
 router.get("/sales/today", getSalesToday);
 
-router.get("/sales/:date", getSalesByDay);
+router.get("/sales/:date", getSalesByDate);
 
 // Rutas para resúmenes de ventas
-router.get("/sales/summary/month", getTotalSalesThisMonth);
-router.get("/sales/summary/year", getTotalSalesYear);
+router.get("/sales/summary/month", getCurrentMonthSalesSummary);
+router.get("/sales/summary/year", getCurrentYearSalesSummary);
 
 // Rutas para modificar y eliminar ventas
 router

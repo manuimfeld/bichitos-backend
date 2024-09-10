@@ -12,15 +12,12 @@ export const getAllExpenses = async (req: Request, res: Response) => {
   }
 };
 
-export const getTotalExpensesThisMonth = async (
-  req: Request,
-  res: Response
-) => {
+export const getExpensesCurrentMonth = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query(expensesQueries.getTotalExpensesMonth);
-    handleSuccess(res, result.rows[0]);
+    const result = await pool.query(expensesQueries.getExpensesByMonth);
+    handleSuccess(res, result.rows);
   } catch (error) {
-    console.error("Error al obtener gastos del mes:", error);
-    handleError(res, error, "Error al obtener gastos del mes");
+    console.log(error);
+    handleError(res, error, "Error al obtener todos los gastos");
   }
 };

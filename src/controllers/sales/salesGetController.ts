@@ -22,7 +22,7 @@ export const getSalesToday = async (req: Request, res: Response) => {
   }
 };
 
-export const getSalesByDay = async (req: Request, res: Response) => {
+export const getSalesByDate = async (req: Request, res: Response) => {
   const sale_date = req.params.date;
   const startDate = new Date(sale_date + "T00:00:00Z");
   const endDate = new Date(sale_date + "T23:59:59Z");

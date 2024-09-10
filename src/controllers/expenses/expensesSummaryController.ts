@@ -3,12 +3,15 @@ import pool from "../../config/pg/connection";
 import expensesQueries from "../../queries/expensesQueries";
 import { handleSuccess, handleError } from "../../utils/responseHelper";
 
-export const getExpensesMonthly = async (req: Request, res: Response) => {
+export const getCurrentMonthExpensesSummary = async (
+  req: Request,
+  res: Response
+) => {
   try {
-    const result = await pool.query(expensesQueries.getExpensesByMonth);
-    handleSuccess(res, result.rows);
+    const result = await pool.query(expensesQueries.getTotalExpensesMonth);
+    handleSuccess(res, result.rows[0]);
   } catch (error) {
-    console.log(error);
-    handleError(res, error, "Error al obtener todos los gastos");
+    console.error("Error al obtener gastos del mes:", error);
+    handleError(res, error, "Error al obtener gastos del mes");
   }
 };
