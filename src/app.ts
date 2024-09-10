@@ -1,7 +1,6 @@
 import cors from "cors";
 import express from "express";
 import swaggerUi from "swagger-ui-express";
-import specs from "./swagger/swagger";
 import data from "./swagger/swagger.json";
 
 //Import routes
