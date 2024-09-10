@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import pool from "../config/pg/connection";
-import authQueries from "../queries/authQueries";
-import { comparePassword, hashPassword } from "../utils/bcrypt";
-import { signJwt } from "../utils/jwt";
-import { handleSuccess, handleError } from "../utils/responseHelper";
+import pool from "@/config/pg/connection";
+import authQueries from "@/queries/authQueries";
+import { comparePassword, hashPassword } from "@/utils/bcrypt";
+import { signJwt } from "@/utils/jwt";
+import { handleSuccess, handleError } from "@/utils/responseHelper";
 
 export const postAuth = async (req: Request, res: Response) => {
   const { username, password } = req.body;
