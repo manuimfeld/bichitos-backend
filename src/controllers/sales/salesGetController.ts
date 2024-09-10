@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import pool from "@/config/pg/connection";
-import salesQueries from "@/queries/salesQueries";
-import { paymentMapping, turnMapping } from "@/utils/mappingSales";
-import { handleSuccess, handleError } from "@/utils/responseHelper";
+import pool from "../../config/pg/connection";
+import salesQueries from "../../queries/salesQueries";
+import { paymentMapping, turnMapping } from "../../utils/mappingSales";
+import { handleSuccess, handleError } from "../../utils/responseHelper";
 
 export const getAllSales = async (req: Request, res: Response) => {
   try {
@@ -40,5 +40,3 @@ export const getSalesByDay = async (req: Request, res: Response) => {
     handleError(res, error, "Error a obtener las ventas");
   }
 };
-
-export default { getAllSales, getSalesToday, getSalesByDay };

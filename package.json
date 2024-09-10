@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node src/dist/app.js",
+    "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "test": "echo \"No test specified\" && exit 0"
   },

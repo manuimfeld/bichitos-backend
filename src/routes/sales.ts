@@ -4,14 +4,14 @@ import {
   getAllSales,
   getSalesToday,
   getSalesByDay,
-} from "@/controllers/sales/salesGetController";
+} from "../controllers/sales/salesGetController";
 import {
   getTotalSalesThisMonth,
   getTotalSalesYear,
-} from "@/controllers/sales/salesSummaryController";
-import { createSale } from "@/controllers/sales/salesPostController";
-import { deleteSale } from "@/controllers/sales/salesDeleteController";
-import { editSale } from "@/controllers/sales/salesPutController";
+} from "../controllers/sales/salesSummaryController";
+import { createSale } from "../controllers/sales/salesPostController";
+import { deleteSale } from "../controllers/sales/salesDeleteController";
+import { editSale } from "../controllers/sales/salesPutController";
 const router = Router();
 
 // Autenticación JWT para todas las rutas
@@ -22,8 +22,10 @@ router
   .route("/sales")
   .get(getAllSales)
   .post(authorizeRole("admin"), createSale);
-router.route("/sales/today").get(getSalesToday);
-router.route("/sales/:date").get(getSalesByDay);
+
+router.get("/sales/today", getSalesToday);
+
+router.get("/sales/:date", getSalesByDay);
 
 // Rutas para resúmenes de ventas
 router.get("/sales/summary/month", getTotalSalesThisMonth);

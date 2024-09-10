@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
-    "outDir": "src/dist", // Directorio de salida para los archivos compilados
+    "outDir": "dist", // Directorio de salida para los archivos compilados
     "rootDir": "src", // La raíz de los archivos fuente
     "strict": true,
     "esModuleInterop": true,

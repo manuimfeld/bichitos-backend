@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import pool from "@/config/pg/connection";
-import salesQueries from "@/queries/salesQueries";
-import { paymentMapping, turnMapping } from "@/utils/mappingSales";
-import { handleSuccess, handleError } from "@/utils/responseHelper";
+import pool from "../../config/pg/connection";
+import salesQueries from "../../queries/salesQueries";
+import { paymentMapping, turnMapping } from "../../utils/mappingSales";
+import { handleSuccess, handleError } from "../../utils/responseHelper";
 
 export const createSale = async (req: Request, res: Response) => {
   const {
@@ -32,5 +32,3 @@ export const createSale = async (req: Request, res: Response) => {
     handleError(res, error, "Error al crear la venta");
   }
 };
-
-export default { createSale };
