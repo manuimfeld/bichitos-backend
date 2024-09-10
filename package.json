@@ -4,7 +4,7 @@
   "description": "API bichitos-dashbard-backend",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm install; tsc",
     "start": "node dist/app.js",
     "dev": "nodemon",
     "test": "echo \"No test specified\" && exit 0"
