@@ -7,7 +7,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"] // Actualiza la ruta a la carpeta `types`
+    "typeRoots": ["./node_modules/@types", "./src/types"], // Actualiza la ruta a la carpeta `types`
+    "baseUrl": "./", // Esto define la base de las rutas
+    "paths": {
+      "@/*": ["src/*"] // Alias para la carpeta src
+    }
   },
   "include": ["src/**/*.ts"], // Incluye todos los archivos .ts en la carpeta src
   "exclude": ["node_modules"]
