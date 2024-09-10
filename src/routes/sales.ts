@@ -1,45 +1,38 @@
 import { Router } from "express";
-import salesController from "../controllers/sales";
 import { authenticateJWT, authorizeRole } from "../utils/jwt";
+import {
+  getAllSales,
+  getSalesToday,
+  getSalesByDay,
+} from "@/controllers/sales/salesGetController";
+import {
+  getTotalSalesThisMonth,
+  getTotalSalesYear,
+} from "@/controllers/sales/salesSummaryController";
+import { createSale } from "@/controllers/sales/salesPostController";
+import { deleteSale } from "@/controllers/sales/salesDeleteController";
+import { editSale } from "@/controllers/sales/salesPutController";
 const router = Router();
 
-router.get("/sales", authenticateJWT, salesController.getAllSales);
+// Autenticación JWT para todas las rutas
+router.use(authenticateJWT);
 
-router.get("/sales/today", authenticateJWT, salesController.getSalesToday);
+// Rutas para obtener y crear ventas
+router
+  .route("/sales")
+  .get(getAllSales)
+  .post(authorizeRole("admin"), createSale);
+router.route("/sales/today").get(getSalesToday);
+router.route("/sales/:date").get(getSalesByDay);
 
-router.get("/sales/:date", authenticateJWT, salesController.getSalesByDay);
+// Rutas para resúmenes de ventas
+router.get("/sales/summary/month", getTotalSalesThisMonth);
+router.get("/sales/summary/year", getTotalSalesYear);
 
-router.get(
-  "/sales/summary/month",
-  authenticateJWT,
-  salesController.getTotalSalesThisMonth
-);
-
-router.get(
-  "/sales/summary/year",
-  authenticateJWT,
-  salesController.getTotalSalesYear
-);
-
-router.post(
-  "/sales",
-  authenticateJWT,
-  authorizeRole("admin"),
-  salesController.createSale
-);
-
-router.delete(
-  "/sales/:sale_id",
-  authenticateJWT,
-  authorizeRole("admin"),
-  salesController.deleteSale
-);
-
-router.put(
-  "/sales/:sale_id",
-  authenticateJWT,
-  authorizeRole("admin"),
-  salesController.editSale
-);
+// Rutas para modificar y eliminar ventas
+router
+  .route("/sales/:sale_id")
+  .delete(authorizeRole("admin"), deleteSale)
+  .put(authorizeRole("admin"), editSale);
 
 export default router;
