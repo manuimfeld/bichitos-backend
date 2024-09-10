@@ -1,0 +1,5 @@
+{
+  "watch": ["src", "src/swagger/swagger.json"],
+  "ext": "ts,json",
+  "exec": "ts-node src/app.ts"
+}
